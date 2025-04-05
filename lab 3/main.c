@@ -10,13 +10,12 @@ int main()
 	fgets(s, 80, stdin);
 	while (i<strlen(s))
 	{
-		if (s[i]=='a' || s[i]=='b')
 		{
 			if (s[i]=='a')
 			{
 				s[i]='A';
 			}
-			else
+			if (s[i]=='b')
 			{
 				s[i]='B';
 			}
