@@ -21,7 +21,6 @@ int main()
 			}
 		}
 		i++;
-		
 	}
 	printf("%s",s);
 	return 0;
