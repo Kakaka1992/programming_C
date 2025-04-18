@@ -10,3 +10,8 @@ double area(double a, double b, double c) {
     double s = perimeter(a, b, c) / 2; 
     return sqrt(s * (s - a) * (s - b) * (s - c));
 }
+
+
+double height(double a, double area) {
+    return (2 * area) / a;
+}
