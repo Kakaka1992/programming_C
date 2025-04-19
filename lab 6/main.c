@@ -11,25 +11,27 @@ int main() {
     FILE *output = fopen("output.txt", "w");
     if (output == NULL) {
         printf("ne udalos sozdat output.txt\n");
-        fclose(input);
         return 1;
     }
 
     char surname[50], name[50], patronymic[50];
     int birth_year;
-
+    int i=0;
     while (fscanf(input, "%s %s %s %d", 
                 surname, name, patronymic, &birth_year) != EOF) {
+		i++;
         
+        printf(" file sting s=%d = %s %s %s %d \n",i, surname, name, patronymic, birth_year);
         if (birth_year > 1980) {
             fprintf(output, "%s %s %s %d\n", 
                    surname, name, patronymic, birth_year);
         }
+        birth_year = 0;
     }
-
+    
     fclose(input);
     fclose(output);
 
-    printf("fail uspeshno obrabotan!\n");
+    printf("\n");
     return 0;
 }
