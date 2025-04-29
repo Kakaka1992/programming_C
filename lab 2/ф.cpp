@@ -7,9 +7,15 @@ int main() {
         for(int j = 0; j < 3; j++) 
             scanf("%lf", &a[i][j]);
     
-    double main_sum = a[0][0] + a[1][1] + a[2][2];
-    double anti_sum = a[0][2] + a[1][1] + a[2][0];
-    printf("glavnaya: %.1lf\npobochnaya: %.1lf\n\n", main_sum, anti_sum);
+    double main_sum = 0, anti_sum = 0;
+    
+    for(int i = 0; i < 3; i++) {
+        main_sum += a[i][i];
+    }
+    
+    for(int i = 0; i < 3; i++) {
+        anti_sum += a[i][2 - i];
+    }
 
     int b[2][2], res[2][2] = {0};
     printf("vvesti 4 chisla 2x2:\n");
