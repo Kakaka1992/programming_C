@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 struct humen {
     char firstname[50];
     char secondname[50];
