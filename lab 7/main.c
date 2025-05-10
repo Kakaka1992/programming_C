@@ -1,50 +1,53 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
-struct humen {
-    char name[100];
-    char sname[100];
-    int byear;
-};
+typedef struct {
+    char firstname[20];
+    char lastname[20];
+    int year;
+} humen;
 
 int main() {
-	int i,j;
-    const int N = 4;
-    struct humen a[N], b[N], temp;
-
+    humen array1[4];
+    humen array2[4];
     
-	for (i = 0; i < N; i++) {
-        printf("vvedite imya %d cheloveka: ", i + 1, "\n");
-        scanf("%s", a[i].name); 
-
-        printf("vvedite familiy %d cheloveka: ", i + 1, "\n");
-        scanf("%s", a[i].sname);
-
-        printf("vvedite god %d cheloveka: ", i + 1, "\n");
-        scanf("%d", &a[i].byear);
+     FILE *f1;
+    f1 = fopen("text.txt", "r");
+    int i;
+    for (i = 0; i < 4; i++) {
+       fscanf(f1, "%s %s %d", array1[i].firstname, array1[i].lastname, &array1[i].year);
+       
     }
-
+  	memcpy(array2, array1, sizeof(array1));
     
-	for (i = 0; i < N; i++) {
-        b[i] = a[i];
-    }
-
     
-	for (i = 0; i < N - 1; i++) {
-		for (j = 0; j < N - i - 1; j++) {
-            if (b[j].byear > b[j + 1].byear) {
-                temp = b[j];
-                b[j] = b[j + 1];
-                b[j + 1] = temp;
+    int N;
+	N=4;
+	int tmp;
+    bool noSwap;
+    for (i = N - 1; i >= 0; i--){
+        noSwap = 1;
+        int j;
+        for (j = 0; j < i; j++)
+        {
+            if (array2[j].year > array2[j + 1].year)
+            {
+                tmp = array2[j].year;
+                array2[j].year = array2[j + 1].year;
+                array2[j + 1].year = tmp;
+                noSwap = 0;
             }
         }
+        if (noSwap == 1)
+            break;
     }
-
+	
+    printf("array2:\n");
+    for (i = 0; i < 4; i++) {
+        printf("%s %s %d\n", array2[i].firstname, array2[i].lastname, array2[i].year);
+    }
     
-    printf("\notsorterovanni spisok:\n");
-	for (i = 0; i < N; i++) {
-        printf("%s %s %d\n", b[i].name, b[i].sname, b[i].byear);
-    }
-
     return 0;
 }
