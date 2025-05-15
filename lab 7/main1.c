@@ -2,54 +2,55 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 struct humen {
-    char firstname[50];
-    char secondname[50];
-    int age;
+    char name[50];
+    char sname[50];
+    int byear;
 };
 
 int main() {
-	int i,j;
     FILE *file;
-    char filename[100] = "file.txt";
-    struct humen *people = NULL;
+    struct humen a[100], temp;
     int count = 0;
-    
-    file = fopen(filename, "r");
+    int i, j;
+
+    file = fopen("input.txt", "r");
     if (file == NULL) {
-        printf("Error opening file\n");
+        printf("oshibka!\n");
         return 1;
     }
-    
-    char line[150];
-    while (fgets(line, sizeof(line), file)) {
-        people= realloc(people, (count + 1) * sizeof(struct humen));
-    
-        if (sscanf(line, "%49s %49s %d",
-                  people[count].firstname,
-                  people[count].secondname,
-                  &people[count].age) == 3) {
-            count++;
-        }
+
+    while(fscanf(file, "%s %s %d", 
+        a[count].name, 
+        a[count].sname, 
+        &a[count].byear) == 3) {
+        count++;
     }
     fclose(file);
-    
-    for ( i = 0; i < count - 1; i++) {
-        for ( j = 0; j < count - i - 1; j++) {
-            if (people[j].age > people[j + 1].age) {
-                struct humen temp = people[j];
-                people[j] = people[j + 1];
-                people[j + 1] = temp;
+
+
+    for (i = 0; i < count - 1; i++) {
+        for (j = 0; j < count - i - 1; j++) {
+            if (a[j].byear > a[j + 1].byear) {
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
             }
         }
     }
-    
-    printf("Sorted data:\n");
-    for ( i = 0; i < count; i++) {
-        printf("%s %s %d\n", people[i].firstname, people[i].secondname, people[i].age);
+
+
+    printf("sorterovanni:\n");
+    for (i = 0; i < count; i++) {
+        printf("%s %s %d\n", a[i].name, a[i].sname, a[i].byear);
     }
-    
-    free(people);
+
+
+    file = fopen("output.txt", "w");
+    for (i = 0; i < count; i++) {
+        fprintf(file, "%s %s %d\n", a[i].name, a[i].sname, a[i].byear);
+    }
+    fclose(file);
+
     return 0;
 }
