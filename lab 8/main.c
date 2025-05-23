@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX_PEOPLE[10]
+
 typedef struct {
-    char name[MAX_NAME]; 
+    char name; 
     int year;           
     char gender;       
     float height;      
