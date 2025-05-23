@@ -6,7 +6,7 @@
 #define MAX(n, arr) ({int max = (arr)[0]; int i; for (i = 1; i < n; i++) if (max < (arr)[i]) max = (arr)[i]; max;})
 
 int main(){
-    int numbers[10];
+    int numbers[5];
     int count = 5;
     int i;
 
