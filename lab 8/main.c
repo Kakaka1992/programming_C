@@ -16,9 +16,9 @@ int main() {
 	int i, j; 
 
     
-    FILE *file = fopen("people.txt", "r");
-    if (!file) {
-        printf("oshibka!\n");
+   FILE *input = fopen("input.txt", "r");
+    if (input == NULL) {
+        printf("ne udalos otcrit people.txt\n");
         return 1;
     }
 
